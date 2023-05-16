@@ -28,8 +28,8 @@ VS Code Folders:
 1. client -> publicly -> index.html
    a. src -> index.css 
              index.js
-      i. components -> puzzleboard.js
-                       puzzlepiece.js
+      i. components -> puzzleboard.jsx
+                       puzzlepiece.jsx
 2. server -> server.js
    a. controllers -> puzzlecontroller.js
    b. models -> puzzlemodel.js
