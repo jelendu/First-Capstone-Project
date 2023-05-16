@@ -1,0 +1,36 @@
+Brainstorming
+
+Project Name: Interactive Pepe The Frog Puzzle
+
+What is it: An interactive puzzle game where users can assemble an image of Pepe The Frog
+
+Features (mvp?):
+
+1. drag and drop puzzle to arrange them - (use react.js for easier transition & entire project)
+2. hints
+3. puzzle displayed
+4. solution
+5. scoreboard - (express will handle req /database will store the data?)
+6. joke collection?
+7. timer
+
+
+Outline:
+1. Puzzle displays on the right
+2. Score/scoreboard displays after attempt
+3. How many attempts btw? hmmmm...
+4. Gives a funny response to losing or winning? like a joke display function 
+
+*** Might want to use a ReadMe on github 
+
+
+VS Code Folders:
+1. client -> publicly -> index.html
+   a. src -> index.css 
+             index.js
+      i. components -> puzzleboard.js
+                       puzzlepiece.js
+2. server -> server.js
+   a. controllers -> puzzlecontroller.js
+   b. models -> puzzlemodel.js
+
