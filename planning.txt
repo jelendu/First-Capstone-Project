@@ -1,4 +1,4 @@
-Brainstorming
+Brainstorming *** Might want to use parts of this as a ReadMe on github 
 
 Project Name: Interactive Pepe The Frog Puzzle
 
@@ -21,7 +21,6 @@ Outline:
 3. How many attempts btw? hmmmm...
 4. Gives a funny response to losing or winning? like a joke display function 
 
-*** Might want to use a ReadMe on github 
 
 
 VS Code Folders:
@@ -33,4 +32,227 @@ VS Code Folders:
 2. server -> server.js
    a. controllers -> puzzlecontroller.js
    b. models -> puzzlemodel.js
+
+
+Database:
+1. Design database schema using data for PostgreSQL using bit.io
+2. Create models that correspond to database via the server
+3. Create API endpoints
+4. Use axios to request endpoint from the front end 
+
+
+Database Planning (to achieve normalization thru relationships):
+- Puzzles
+  puzzle_id (primary key)
+  puzzle_name
+  puzzle_image
+  puzzle_size
+  puzzle_difficulty
+  puzzle_time_limit
+
+- Pieces
+  piece_id (primary key)
+  puzzle_id (foreign key)
+  piece_image
+  piece_position
+
+- Scores
+  score_id (primary key)
+  puzzle_id (foreign key)
+  user_id (foreign key)
+  score
+  time_taken
+
+- Users
+  user_id (primary key)
+  username
+  password
+  email
+
+
+Relationships:
+
+- A puzzle has many pieces.
+- A piece belongs to one puzzle.
+- A user can have many scores.
+- A score belongs to one puzzle and one user.
+
+
+Add-ons:
+
+Puzzle
+1. The puzzle_id is the primary key for this table. It is an auto-incrementing integer that uniquely identifies each puzzle.
+2. The puzzle_name is a string that contains the name of the puzzle.
+3. The puzzle_image is a binary large object (BLOB) that contains the image of the puzzle.
+4. The puzzle_size is an integer that specifies the number of pieces in the puzzle.
+5. The puzzle_difficulty is an integer that specifies the difficulty of the puzzle.
+6. The puzzle_time_limit is an integer that specifies the time limit in seconds for completing the puzzle.
+
+Pieces
+1. The piece_id is the primary key for this table. It is an auto-incrementing integer that uniquely identifies each piece.
+2. The puzzle_id is a foreign key that references the puzzle_id in the Puzzles table.
+3. The piece_image is a BLOB that contains the image of the piece.
+4. The piece_position is an integer that specifies the position of the piece in the puzzle.
+Scores
+5. The score_id is the primary key for this table. It is an auto-incrementing integer that uniquely identifies each score.
+6. The puzzle_id is a foreign key that references the puzzle_id in the Puzzles table.
+7. The user_id is a foreign key that references the user_id in the Users table.
+8. The score is an integer that specifies the score for the puzzle.
+9. The time_taken is an integer that specifies the time in seconds it took to complete the puzzle.
+
+Users
+1. The user_id is the primary key for this table. It is an auto-incrementing integer that uniquely identifies each user.
+2. The username is a string that contains the username of the user.
+3. The password is a string that contains the password of the user.
+4. The email is a string that contains the email address of the user.
+
+
+full puzzle
+<canvas class="JigsawPlayer_canvas__NutE6" width="341" height="274" style="background-color: rgb(240, 240, 240);"></canvas>
+
+<script src="path-to-jigsaw-library.js"></script>
+
+Responded:
+Ben Broad
+Aranvihn Clark
+Jeri Stewart
+Lucky Phan
+Anwar Moallin
+Oscar Pena
+Melissa Jesmin
+Elena Mena
+Mahad Ali
+Hikmah Abodunrin
+Hoyoung Lee
+Mitchell Nguyen
+Katya Daron
+Ashley Kosik
+Joanna Elendu
+Dionte Walker
+
+Did not Respond:
+Nasir K
+Marufa Sumi
+Junior David Roche
+Drew Noble
+Brenda Escobedo
+Abdirahman Ali
+Charneaka Lewis
+Motasem Diab
+Queen Bridges
+Omair Siddiqui
+Rola Alasmar
+Elise Heard
+Chase Morgan
+Hamza Ali
+Andrew Albrecht
+Lyonel Pierce
+Ayuub Moallin
+
+
+INSERT INTO puzzlers (user_id, player, username)
+VALUES 
+       (1, "Ben", "benchpressbroad_10"), 
+       (2, "Aranvihn", "the_yaegerist"),
+       (3, "Jeri", "notspringer9"),
+       (4, "Lucky", "phantastic4"),
+       (5, "Anwar", "anwarWins"),
+       (6, "Oscar", "one_punch_man"),
+       (7, "Melissa", "issaStar"),
+       (8, "Elena", "i_can_see_the_future"),
+       (9, "Mahad", "me_at_hello"),
+       (10, "Hikmah", "theWise"),
+       (11, "Hoyoung", "hohoholee"),
+       (12, "Mitchell", "nothing_tops_the_css_god"),
+       (13, "Katya", "daretobeK"),
+       (14, "Ashley", "friendship_is_magic"),
+       (15, "Joanna", "floating_nodes"),
+       (16, "Dionte", "he_doesnt_just_walk_he_climbs"),
+       (17, "Nasir", "nasir"),
+       (18, "Marufa", "marufa"),
+       (19, "Junior", "junior"),
+       (20, "Drew", "drew"),
+       (21, "Brenda", "brenda"),
+       (22, "Abdirahman", "abdirahman"),
+       (23, "Charneaka", "charneaka"),
+       (24, "Motasem", "motasem"),
+       (25, "Latisha", "latisha"),
+       (26, "Omair", "omair"),
+       (27, "Rola", "rola"),
+       (28, "Elise", "elise"),
+       (29, "Chase", "chase"),
+       (30, "Hamza", "hamza"),
+       (31, "Andrew", "andrew"),
+       (32, "Lyonel", "lyonel"),
+       (33, "Ayuub", "ayuub");
+
+
+I could just simplify the design by having two main tables:
+
+puzzlers: This table will contain the information about the players. It will have user_id as a primary key, player as the player name, and username as the username of the player.
+
+puzzles: This table will contain the information about the puzzles. It will have puzzle_id as a primary key and image_url as the image URL of the puzzle.
+
+puzzler_puzzles: This table will link puzzlers and puzzles and contain data about which player solved which puzzle. It will have user_id and puzzle_id as foreign keys, time_taken as the time taken by the player to solve the puzzle, and completion_date as the date when the puzzle was solved. Here user_id and puzzle_id together will form a composite primary key.
+
+Here is the SQL code to create these tables:
+
+SQL
+Copy code
+CREATE TABLE puzzlers (
+  user_id SERIAL PRIMARY KEY,
+  player VARCHAR(255) NOT NULL,
+  username VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE puzzles (
+  puzzle_id SERIAL PRIMARY KEY,
+  image_url VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE puzzler_puzzles (
+  user_id INT REFERENCES puzzlers(user_id),
+  puzzle_id INT REFERENCES puzzles(puzzle_id),
+  time_taken INT NOT NULL,
+  completion_date DATE NOT NULL,
+  PRIMARY KEY (user_id, puzzle_id)
+);
+The puzzler_puzzles table is a junction table that establishes a many-to-many relationship between puzzlers and puzzles. A puzzler can solve many puzzles, and a puzzle can be solved by many puzzlers.
+
+The time_taken and completion_date fields in the puzzler_puzzles table provide additional information about the relationship between a puzzler and a puzzle.
+
+justjo@Justs-Air build-out % nodemon
+[nodemon] 2.0.22
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node server/server.js`
+node:internal/modules/cjs/loader:1078
+  throw err;
+  ^
+
+Error: Cannot find module './models'
+Require stack:
+- /Users/justjo/Downloads/build-out/server/seed.js
+- /Users/justjo/Downloads/build-out/server/server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1075:15)
+    at Module._load (node:internal/modules/cjs/loader:920:27)
+    at Module.require (node:internal/modules/cjs/loader:1141:19)
+    at require (node:internal/modules/cjs/helpers:110:18)
+    at Object.<anonymous> (/Users/justjo/Downloads/build-out/server/seed.js:16:21)
+    at Module._compile (node:internal/modules/cjs/loader:1254:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1308:10)
+    at Module.load (node:internal/modules/cjs/loader:1117:32)
+    at Module._load (node:internal/modules/cjs/loader:958:12)
+    at Module.require (node:internal/modules/cjs/loader:1141:19) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    '/Users/justjo/Downloads/build-out/server/seed.js',
+    '/Users/justjo/Downloads/build-out/server/server.js'
+  ]
+}
+
+Node.js v18.15.0
+[nodemon] app crashed - waiting for file changes before starting...
+
 
